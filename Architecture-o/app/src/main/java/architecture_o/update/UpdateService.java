@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -257,6 +258,11 @@ public class UpdateService extends Service implements RequestStatusBase.OnResult
         }
     }
 
+    /**
+     * 不加subscribe注解会报错。
+     * @param event
+     */
+    @Subscribe
     public void onEventMainThread(UpdateEvent.UpdateProgressEvent event) {
         if (event.state == UpdateEvent.DownloadState.Downloading) {
 //            if (showNotify)
